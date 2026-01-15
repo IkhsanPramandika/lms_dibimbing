@@ -1,0 +1,4 @@
+name,empId,email,phone,division,role,address
+Ikhsan Valid,EMP-001,ikhsan@test.com,812,QA,QA Engineer,Jakarta
+Ikhsan invalid,EMP-002,ikhsan_invalid,812,QA,QA Engineer,Jakarta
+NamaSangatPanjangSekaliSampaiLebihDariDuaRatusKarakte,EMP-999,long@test.com,812,QA,QA Engineer,Jakarta
