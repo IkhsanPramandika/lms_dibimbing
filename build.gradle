@@ -34,11 +34,10 @@ dependencies {
 }
 
 test {
-    // Menginstruksikan Gradle untuk menggunakan TestNG
     useTestNG()
-
-    // Menampilkan log di konsol saat pengujian berjalan
     testLogging {
-        events "passed", "skipped", "failed"
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        showStandardStreams = true
+        exceptionFormat "full"
     }
 }

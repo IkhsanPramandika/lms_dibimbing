@@ -18,7 +18,7 @@ public class BaseSetup {
     public WebDriverWait wait;
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp()     {
         // Load properties file
         properties = new Properties();
         try {

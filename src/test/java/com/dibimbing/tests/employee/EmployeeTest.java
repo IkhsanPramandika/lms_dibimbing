@@ -21,7 +21,7 @@ public class EmployeeTest extends BaseSetup {
 
     @Test(dataProvider = "employeeCSVData")
     public void testAddEmployeeFromCSV(String name, String id, String email, String phone, String div, String role, String addr) {
-        // Logika tes tetap sama, tapi datanya murni dari file luar
+
         log.info("Menjalankan tes untuk data: " + name);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(properties.getProperty("admin_email"), properties.getProperty("admin_password"));
@@ -30,11 +30,10 @@ public class EmployeeTest extends BaseSetup {
         employeePage.goToEmployeePage();
         employeePage.clickAddEmployee();
 
-        // Data diambil otomatis dari DataProvider
         employeePage.fillEmployeeData(name, id, email, phone, div, role, addr);
         employeePage.submitForm();
 
-        // 4. Assertion (Validasi hasil - Sesuaikan dengan pesan sukses/URL yang muncul)
+        // 4. Assertion (Validasi hasil)
         log.info("Validasi penambahan karyawan berhasil");
         Assert.assertTrue(driver.getCurrentUrl().contains("employee"), "Gagal menambahkan karyawan!");
     }
