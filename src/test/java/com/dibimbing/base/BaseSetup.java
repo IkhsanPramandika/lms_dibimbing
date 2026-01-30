@@ -4,9 +4,11 @@ import com.dibimbing.pages.login.LoginPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait; // Import baru
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -18,9 +20,11 @@ public class BaseSetup {
     public Properties properties;
     public WebDriverWait wait;
 
+    // Tambahkan di dalam class BaseSetup
     @BeforeMethod
-    public void setUp()     {
-        // Load properties file
+    @Parameters("browser")
+    public void setup(String browser) {
+        // Load properties tetap sama
         properties = new Properties();
         try {
             FileInputStream fis = new FileInputStream("src/test/resources/config.properties");
@@ -29,14 +33,17 @@ public class BaseSetup {
             e.printStackTrace();
         }
 
-        // Setup WebDriver
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        // Browser
+        if (browser.equalsIgnoreCase("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        } else if (browser.equalsIgnoreCase("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+        }
+
         driver.manage().window().maximize();
-
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(properties.getProperty("url"));
     }
 
