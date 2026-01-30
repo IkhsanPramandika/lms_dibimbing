@@ -16,7 +16,7 @@ allure {
 
 dependencies {
     // UI Automation - Selenium
-    implementation 'org.seleniumhq.selenium:selenium-java:4.16.1'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.27.0'
 
     // API Automation - REST Assured
     testImplementation 'io.rest-assured:rest-assured:5.4.0'

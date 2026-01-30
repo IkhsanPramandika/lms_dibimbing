@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -23,39 +24,30 @@ public class BaseSetup {
     public Properties properties;
     public WebDriverWait wait;
 
-
     @BeforeMethod
     @Parameters("browser")
     public void setup(@Optional("chrome") String browser) {
-        // Load properties
-        properties = new Properties();
-        try {
-            FileInputStream fis = new FileInputStream("src/test/resources/config.properties");
-            properties.load(fis);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        // Browser
         if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-        } else if (browser.equalsIgnoreCase("firefox")) {
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless=new");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--window-size=1920,1080");
+            driver = new ChromeDriver(options);
+        }
+        // Konfigurasi Firefox
+        else if (browser.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
+            FirefoxOptions options = new FirefoxOptions();
+            options.addArguments("--headless");
+            driver = new FirefoxDriver(options);
         }
 
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         driver.get(properties.getProperty("url"));
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
-        options.addArguments("--headless=new");
-        options.addArguments("--window-size=1920,1080");
-        driver = new ChromeDriver(options);
     }
 
     @BeforeMethod
