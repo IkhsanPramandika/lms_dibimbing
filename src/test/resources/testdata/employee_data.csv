@@ -1,4 +1,4 @@
 name,empId,email,phone,division,role,address
-Ikhsan Valid,EMP-001,ikhsan@test.com,812,QA,QA Engineer,Jakarta
+Ikhsan Valid,EMP-001,ikhsan.pramandika@test.com,812,QA,QA Engineer,Jakarta
 Ikhsan invalid,EMP-002,ikhsan_invalid,812,QA,QA Engineer,Jakarta
-NamaSangatPanjangSekaliSampaiLebihDariDuaRatusKarakte,EMP-999,long@test.com,812,QA,QA Engineer,Jakarta
+"NamaSebagian orang berpikir bahwa jumlah karakter adalah jumlah total huruf dalam suatu teks, tapi sebenarnya jumlah karakter adalah jumlah total semua kar",EMP-999,longggg@test.com,812,QA,QA Engineer,Jakarta
