@@ -1,6 +1,6 @@
 package com.dibimbing.tests.training;
 
-import com.dibimbing.base.BaseSetup;
+import com.dibimbing.base.BaseLoginUI;
 import com.dibimbing.pages.training.TrainingPage;
 import com.dibimbing.utils.CSVReader;
 import org.openqa.selenium.By;
@@ -9,7 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class TrainingTest extends BaseSetup {
+public class TrainingTest extends BaseLoginUI {
 
     @DataProvider(name = "trainingCSVData")
     public Object[][] getTrainingCSVData() {

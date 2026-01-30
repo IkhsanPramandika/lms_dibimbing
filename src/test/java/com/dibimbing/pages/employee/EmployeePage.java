@@ -63,6 +63,10 @@ public class EmployeePage extends BasePage {
         addEmployeeButton.click();
     }
 
+    public void addEmployee(String name, String empId, String email, String phone, String division, String role, String address) {
+        fillEmployeeData(name, empId, email, phone, division, role, address);
+    }
+
     public void fillEmployeeData(String name, String empId, String email, String phone, String division, String role, String address) {
         log.info("Mengisi data karyawan: {}", name);
         nameInput.sendKeys(name);
