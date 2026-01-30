@@ -23,7 +23,7 @@ public class TrainingTest extends BaseSetup {
 
     @Test(dataProvider = "trainingCSVData")
     public void testAddTrainingDataDriven(String name, String desc, String isOrder) {
-        // 1. Login & Navigasi
+        // Login & Navigasi
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(properties.getProperty("admin_email"), properties.getProperty("admin_password"));
 
@@ -31,13 +31,13 @@ public class TrainingTest extends BaseSetup {
         trainingPage.goToTrainingPage();
         trainingPage.clickAddTraining();
 
-        // 2. Input Data
+        // Input Data
         trainingPage.fillTrainingData(name, desc, Boolean.parseBoolean(isOrder));
         trainingPage.submitTraining();
 
         log.info("Skenario selesai untuk Training: " + name);
 
-        // 3. Validasi (Menggunakan 'wait' dari BaseSetup)
+        // Validasi
         if (name == null || name.isEmpty()) {
             log.info("Skenario Negatif: Verifikasi pesan 'Required'");
             Assert.assertTrue(trainingPage.isErrorMessageDisplayed(), "Pesan error tidak muncul!");
