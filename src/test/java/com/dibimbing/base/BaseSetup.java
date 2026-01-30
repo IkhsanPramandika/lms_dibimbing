@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -51,6 +52,9 @@ public class BaseSetup {
         options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
+        driver = new ChromeDriver(options);
+        options.addArguments("--headless=new");
+        options.addArguments("--window-size=1920,1080");
         driver = new ChromeDriver(options);
     }
 
