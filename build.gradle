@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.11.2'
 }
 
 group = 'com.dibimbing'
@@ -9,34 +10,39 @@ repositories {
     mavenCentral()
 }
 
+allure {
+    version = '2.24.0'
+}
+
 dependencies {
-    // 1. UI Automation - Selenium
+    // UI Automation - Selenium
     implementation 'org.seleniumhq.selenium:selenium-java:4.16.1'
 
-    // 2. API Automation - REST Assured
+    // API Automation - REST Assured
     testImplementation 'io.rest-assured:rest-assured:5.4.0'
     testImplementation 'io.rest-assured:json-path:5.4.0'
-    testImplementation 'io.rest-assured:xml-path:5.4.0'
 
-    // 3. Test Runner - TestNG
+    // Test Runner - TestNG
     testImplementation 'org.testng:testng:7.9.0'
 
-    // 4. Driver Management
-    implementation 'io.github.bonigarcia:webdrivermanager:5.6.3'
+    // 3. Tambahkan Allure TestNG Integration
+    testImplementation 'io.qameta.allure:allure-testng:2.24.0'
 
-    // 5. JSON Handling (Untuk API Response Validation)
+    // Driver Management & JSON
+    implementation 'io.github.bonigarcia:webdrivermanager:5.6.3'
     implementation 'org.json:json:20231013'
 
-    // Logging - Log4j2
+    // Logging
     implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
     testImplementation 'org.slf4j:slf4j-simple:2.0.9'
-
 }
 
 test {
     useTestNG()
+    systemProperty "allure.results.directory", "build/allure-results"
+
     testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
+        events "passed", "skipped", "failed"
         showStandardStreams = true
         exceptionFormat "full"
     }

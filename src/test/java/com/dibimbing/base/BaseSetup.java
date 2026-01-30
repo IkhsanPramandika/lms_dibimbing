@@ -1,5 +1,6 @@
 package com.dibimbing.base;
 
+import com.dibimbing.pages.login.LoginPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -37,6 +38,15 @@ public class BaseSetup {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(properties.getProperty("url"));
+    }
+
+    @BeforeMethod
+    public void setupLogin() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(
+                properties.getProperty("admin_email"),
+                properties.getProperty("admin_password")
+        );
     }
 
     @AfterMethod
